@@ -23,15 +23,21 @@ def load_json_data(filename):
 def list_services_by_host(data):
     output = ""
     for host in data.get('hosts', []):
-        host_info = f"Host: {host['address']} ({', '.join(host.get('hostnames', []))})"
-        print(f"\033[91m{host_info}\033[0m")  # Yellow text
-        output += host_info + "\n"
+        # Bold and red for HTML, red for terminal
+        host_info_html = f"<strong>Host: {host['address']} ({', '.join(host.get('hostnames', []))})</strong>"
+        host_info_terminal = f"\033[91mHost: {host['address']} ({', '.join(host.get('hostnames', []))})\033[0m"
+        print(host_info_terminal)
+        output += host_info_html + "<br>"
+
         for port in host.get('ports', []):
             service = port.get('service')
             if service:
+                # Yellow for terminal
                 service_info = f"  Service: {service.get('name')} on Port {port['portid']}"
-                print(f"\033[93m{service_info}\033[0m")  # Yellow text
-                output += service_info + "\n"
+                print(f"\033[93m{service_info}\033[0m")
+                output += service_info + "<br>"
+
+        output += "<br>"  # Extra line break for spacing
     add_to_dataset(output)
 
 
@@ -80,6 +86,25 @@ def identify_operating_systems(data):
     add_to_dataset(output)
 
 
+def list_open_ports_by_ipv4(data):
+    output = ""
+    for host in data.get('hosts', []):
+        ip_address = host['address']
+        ip_address_html = f"<strong>{ip_address}</strong>"
+        ip_address_terminal = f"\033[91m{ip_address}\033[0m"
+        print(ip_address_terminal)
+        output += ip_address_html + "<br>"
+
+        open_ports = [port for port in host.get('ports', []) if port.get('state') == 'open']
+        for port in open_ports:
+            port_info = f"  Open Port: {port['portid']}"
+            print(f"\033[93m{port_info}\033[0m")
+            output += port_info + "<br>"
+
+        output += "<br>"  # Extra line break for spacing
+    add_to_dataset(output)
+
+
 # Function to print the entire JSON file
 def print_json(data):
     print(json.dumps(data, indent=4))
@@ -87,7 +112,7 @@ def print_json(data):
 
 # Function to save results to an HTML file and open in browser
 def export_results_to_html(filename='results.html'):
-    html_content = "<html><head><title>Nmap Scan Results</title></head><body><h1>Nmap Scan Results</h1>"
+    html_content = "<html><head><title>Nmap Scan Results</title></head><body><h1>BigDig Vulnerabilities \nNmap Scan Results</h1>"
     for entry in results_dataset:
         # Split the entry into lines and add <br> tags
         lines = entry.split('\n')
@@ -115,9 +140,10 @@ def main():
         print("2. Find a specific service across all hosts")
         print("3. Summarize open ports by protocol")
         print("4. Identify operating systems")
-        print("5. Print entire JSON file")
-        print("6. Export results to HTML and open in browser")
-        print("7. Exit")
+        print("5. List open ports by IP")
+        print("6. Print entire JSON file")
+        print("7. Export results to HTML and open in browser")
+        print("8. Exit")
         choice = input("Enter your choice: ")
 
         if choice == '1':
@@ -130,10 +156,12 @@ def main():
         elif choice == '4':
             identify_operating_systems(data)
         elif choice == '5':
-            print_json(data)
+            list_open_ports_by_ipv4(data)
         elif choice == '6':
-            export_results_to_html()
+            print_json(data)
         elif choice == '7':
+            export_results_to_html()
+        elif choice == '8':
             print("Exiting program.")
             break
         else:
