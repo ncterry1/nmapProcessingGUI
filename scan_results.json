@@ -1,0 +1,169 @@
+{
+    "hosts": [
+        {
+            "address": "192.168.1.1",
+            "hostnames": ["router.local"],
+            "os": "Linux",
+            "ports": [
+                {
+                    "portid": "22",
+                    "protocol": "tcp",
+                    "state": "open",
+                    "service": {
+                        "name": "ssh",
+                        "product": "OpenSSH",
+                        "version": "7.9",
+                        "extrainfo": "protocol 2.0"
+                    }
+                },
+                {
+                    "portid": "80",
+                    "protocol": "tcp",
+                    "state": "open",
+                    "service": {
+                        "name": "http",
+                        "product": "Apache httpd",
+                        "version": "2.4.41",
+                        "extrainfo": "Unix"
+                    }
+                },
+                {
+                    "portid": "443",
+                    "protocol": "tcp",
+                    "state": "closed"
+                }
+            ]
+        },
+        {
+            "address": "192.168.1.2",
+            "hostnames": ["server.local"],
+            "os": "Windows",
+            "ports": [
+                {
+                    "portid": "22",
+                    "protocol": "tcp",
+                    "state": "closed"
+                },
+                {
+                    "portid": "135",
+                    "protocol": "tcp",
+                    "state": "filtered",
+                    "service": {
+                        "name": "msrpc",
+                        "product": "Microsoft Windows RPC"
+                    }
+                },
+                {
+                    "portid": "3389",
+                    "protocol": "tcp",
+                    "state": "open",
+                    "service": {
+                        "name": "ms-wbt-server",
+                        "product": "Microsoft Terminal Service",
+                        "extrainfo": "RDP"
+                    }
+                },
+                {
+                    "portid": "445",
+                    "protocol": "tcp",
+                    "state": "open",
+                    "service": {
+                        "name": "microsoft-ds",
+                        "product": "Windows File Sharing"
+                    }
+                }
+            ]
+        },
+        {
+            "address": "192.168.1.3",
+            "hostnames": ["workstation.local"],
+            "os": "macOS",
+            "ports": [
+                {
+                    "portid": "22",
+                    "protocol": "tcp",
+                    "state": "open",
+                    "service": {
+                        "name": "ssh",
+                        "product": "OpenSSH for macOS",
+                        "version": "8.1",
+                        "extrainfo": "protocol 2.0"
+                    }
+                },
+                {
+                    "portid": "5900",
+                    "protocol": "tcp",
+                    "state": "open",
+                    "service": {
+                        "name": "vnc",
+                        "product": "Apple Remote Desktop",
+                        "version": "3.9"
+                    }
+                },
+                {
+                    "portid": "3283",
+                    "protocol": "udp",
+                    "state": "open",
+                    "service": {
+                        "name": "net-assistant",
+                        "product": "Apple Net Assistant"
+                    }
+                }
+            ]
+        },
+        {
+            "address": "192.168.1.4",
+            "hostnames": ["printer.local"],
+            "os": "Embedded",
+            "ports": [
+                {
+                    "portid": "9100",
+                    "protocol": "tcp",
+                    "state": "open",
+                    "service": {
+                        "name": "jetdirect",
+                        "product": "HP JetDirect Printer"
+                    }
+                },
+                {
+                    "portid": "515",
+                    "protocol": "tcp",
+                    "state": "open",
+                    "service": {
+                        "name": "printer",
+                        "product": "Network Printer"
+                    }
+                }
+            ]
+        },
+        {
+            "address": "192.168.1.5",
+            "hostnames": ["media-server.local"],
+            "os": "Linux",
+            "ports": [
+                {
+                    "portid": "8080",
+                    "protocol": "tcp",
+                    "state": "open",
+                    "service": {
+                        "name": "http-alt",
+                        "product": "Apache Tomcat",
+                        "version": "9.0.37"
+                    }
+                },
+                {
+                    "portid": "22",
+                    "protocol": "tcp",
+                    "state": "open",
+                    "service": {
+                        "name": "ssh",
+                        "product": "OpenSSH",
+                        "version": "8.2p1 Ubuntu",
+                        "extrainfo": "Ubuntu Linux; protocol 2.0"
+                    }
+                }
+            ]
+        }
+    ]
+}
+
