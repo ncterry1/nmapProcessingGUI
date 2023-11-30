@@ -1,0 +1,95 @@
+{
+  "nmaprun": {
+    "scanner": "nmap",
+    "args": "nmap -T4 -A -v -Pn -oA nmap_scan",
+    "start": "1646272050",
+    "startstr": "Sun Mar 02 15:47:30 2023",
+    "version": "7.80",
+    "xmloutputversion": "1.04",
+    "hosts": [
+      {
+        "address": "192.168.1.1",
+        "hostnames": ["router.localdomain"],
+        "ports": [
+          {
+            "portid": "22",
+            "protocol": "tcp",
+            "state": "open",
+            "service": {
+              "name": "ssh",
+              "product": "OpenSSH",
+              "version": "7.4",
+              "extrainfo": "protocol 2.0"
+            }
+          },
+          {
+            "portid": "80",
+            "protocol": "tcp",
+            "state": "open",
+            "service": {
+              "name": "http",
+              "product": "Apache httpd",
+              "version": "2.4.6"
+            }
+          }
+        ],
+        "os": "Linux 3.10 - 4.14",
+        "uptime": {
+          "seconds": "1054500",
+          "lastboot": "Mon Jan 16 09:31:50 2023"
+        }
+      },
+      {
+        "address": "192.168.1.2",
+        "hostnames": ["webserver.localdomain"],
+        "ports": [
+          {
+            "portid": "443",
+            "protocol": "tcp",
+            "state": "open",
+            "service": {
+              "name": "https",
+              "product": "Nginx",
+              "version": "1.16.1"
+            }
+          }
+        ],
+        "os": "Windows Server 2016",
+        "uptime": {
+          "seconds": "604800",
+          "lastboot": "Wed Feb 23 15:47:30 2023"
+        }
+      },
+      {
+        "address": "192.168.1.3",
+        "hostnames": ["fileserver.localdomain"],
+        "ports": [
+          {
+            "portid": "139",
+            "protocol": "tcp",
+            "state": "open",
+            "service": {
+              "name": "netbios-ssn",
+              "product": "Microsoft Windows netbios-ssn"
+            }
+          },
+          {
+            "portid": "445",
+            "protocol": "tcp",
+            "state": "open",
+            "service": {
+              "name": "microsoft-ds"
+            }
+          }
+        ],
+        "os": "Windows 10 or Windows Server 2016",
+        "scripts": {
+          "smb-os-discovery": {
+            "os": "Windows 10 Enterprise 1903",
+            "lanmanager": "Windows 10 Enterprise 6.3"
+          }
+        }
+      }
+    ]
+  }
+}
