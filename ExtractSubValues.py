@@ -34,3 +34,33 @@ print(values)
 '''This script will output the list ['value1', 'value2', 'value3', 'value4', 'value5'], 
 which are the values under SubSubKey1. Make sure to handle exceptions 
 such as KeyError in case some keys are missing in your JSON data.'''
+
+
+#################
+#################
+'''This script defines a function find_hosts_with_ostype which takes a dictionary 
+(your JSON data) and returns a dictionary mapping hosts to their OS types. 
+It then reads a JSON file, processes it, and prints out the host names 
+with their corresponding OS types.
+python'''
+
+import json
+
+def find_hosts_with_ostype(data):
+    hosts_ostype = {}
+    
+    for host, details in data.items():
+        if 'ostype' in details:
+            hosts_ostype[host] = details['ostype']
+    
+    return hosts_ostype
+
+# Assuming your JSON data is stored in a file named 'data.json'
+with open('data.json', 'r') as file:
+    data = json.load(file)
+
+hosts_ostype = find_hosts_with_ostype(data)
+
+for host, ostype in hosts_ostype.items():
+    print(f"Host: {host}, OS Type: {ostype}")
+
